@@ -1,21 +1,19 @@
 # Myanmar holiday (incomplete)definitions for the Ruby Holiday gem.
 #
-# Updated: 2019-02-13.
+# Updated: 2020-01-06.
 # Some dates in Islamic Calendar are missing.
 # Sources:
-# - Sourced from client via Alex Holder
+# - Sourced from client (KBZ BANK) via Alex Holder
+# https://docs.google.com/spreadsheets/d/1S6JzcjLsH9ZeQXEh5x724aHIsuJvdK62qLM7yS-TTQY/edit?usp=sharing
 ---
 months:
   1:
-  - name: New Year's Day
-    regions: [mm]
-    mday: 1
   - name: Independence Day
     regions: [mm]
     mday: 4
-  - name: Kayin New Year's Day
+  - name: Substitute Day
     regions: [mm]
-    mday: 13
+    mday: 6
   2:
   - name: Union Day
     regions: [mm]
@@ -24,69 +22,94 @@ months:
   - name: Peasants Day
     regions: [mm]
     mday: 2
-  - name: Tabaung Full Moon Day
+  - name: Full Moon Day of Taboung
     regions: [mm]
-    mday: 20
+    mday: 8
+  - name: Substitute Day
+    regions: [mm]
+    mday: 9
   - name: Armed Forces Day
     regions: [mm]
     mday: 27
   4:
-  - name: Thingyan Eve
+  - name: Myanmar New Year Holiday
+    regions: [mm]
+    mday: 10
+  - name: Myanmar New Year Holiday
+    regions: [mm]
+    mday: 11
+  - name: Maha Thingyan (Water Festival)
+    regions: [mm]
+    mday: 12
+  - name: Maha Thingyan (Water Festival)
     regions: [mm]
     mday: 13
-  - name: Thingyan (Start of Water Festival)
+  - name: Maha Thingyan (Water Festival)
     regions: [mm]
     mday: 14
-  - name: Water Festival Day
+  - name: Maha Thingyan (Water Festival)
     regions: [mm]
     mday: 15
-  - name: Water Festival Day
+  - name: Maha Thingyan (Water Festival)
     regions: [mm]
     mday: 16
-  - name: Myanmar New Year Day
+  - name: Myanmar New Year Holiday
     regions: [mm]
     mday: 17
   5:
   - name: Labor Day / May Day
     regions: [mm]
     mday: 1
-  - name: Kasone Full Moon Day
+  - name: Full Moon Day of Kasong
     regions: [mm]
-    mday: 18
-  7:
-  - name: Warso  Full Moon Day
-    regions: [mm]
-    mday: 16
+    mday: 6
+  6:
   - name: Martyrs' Day
     regions: [mm]
     mday: 19
+  - name: Substitute Day
+    regions: [mm]
+    mday: 20
+  7:
+  - name: Full Moon Day of Waso (Beginning of Buddhist Lent)
+    regions: [mm]
+    mday: 3
   10:
-  - name: Buddhist Lent Holiday
+  - name: Thadingyut Holiday
     regions: [mm]
-    mday: 12
-  - name: Thadingyut Full Moon Day
+    mday: 29
+  - name: Thadingyut Holiday
     regions: [mm]
-    mday: 13
-  - name: Buddhist Lent Holiday
+    mday: 30
+  - name: Full Moon Day of Thadingyut (End of Buddhist Lent)
     regions: [mm]
-    mday: 14
+    mday: 31
   11:
-  - name: Tazaung Daing Holiday
+  - name: Thadingyut Holiday
     regions: [mm]
-    mday: 10
-  - name: Tazaung Daing Full Moon Day
+    mday: 1
+  - name: Thadingyut Holiday
     regions: [mm]
-    mday: 11
+    mday: 2
+  - name: Dasaung Taing Holiday
+    regions: [mm]
+    mday: 27
+  - name: Dasaung Taing Holiday
+    regions: [mm]
+    mday: 28
+  - name: Dasaung Taing Full Mon Day
+    regions: [mm]
+    mday: 29
+  - name: Dasaung Taing Holiday
+    regions: [mm]
+    mday: 30
+  12:
   - name: National Day
     regions: [mm]
-    mday: 21
-  12:
+    mday: 9
   - name: Christmas Day
     regions: [mm]
     mday: 25
-  - name: Kayin New Year Day
-    regions: [mm]
-    mday: 26
   - name: New Year Eve
     regions: [mm]
     mday: 31
