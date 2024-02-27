@@ -17,10 +17,10 @@ months:
     function: easter(year)
     function_modifier: -1
   - name: Easter Sunday
-    regions: [au_nsw, au_vic]
+    regions: [au_nsw, au_vic, au_sa]
     function: easter(year)
   - name: Easter Sunday
-    regions: [au_qld, au_act, au_sa]
+    regions: [au_qld, au_act]
     function: easter(year)
     year_ranges:
       from: 2017
