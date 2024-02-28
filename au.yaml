@@ -20,15 +20,15 @@ months:
     regions: [au_nsw, au_vic]
     function: easter(year)
   - name: Easter Sunday
-    regions: [au_qld, au_act]
-    function: easter(year)
-    year_ranges:
-      from: 2017
-  - name: Easter Sunday
     regions: [au_sa]
     function: easter(year)
     year_ranges:
       from: 2024
+  - name: Easter Sunday
+    regions: [au_qld, au_act]
+    function: easter(year)
+    year_ranges:
+      from: 2017
   - name: Easter Monday
     regions: [au]
     function: easter(year)
