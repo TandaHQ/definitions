@@ -20,7 +20,8 @@ months:
   2:
   - name: St Brigid's Day
     regions: [ie]
-    mday: 3
+    week: 1
+    wday: 1
   3:
   - name: St. Patrick's Day
     regions: [ie]
@@ -64,6 +65,11 @@ tests:
       name: "New Year's Day"
   - given:
       date: '2023-02-06'
+      regions: ["ie"]
+    expect:
+      name: "St Brigid's Day"
+  - given:
+      date: '2025-02-01'
       regions: ["ie"]
     expect:
       name: "St Brigid's Day"
