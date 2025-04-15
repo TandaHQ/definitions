@@ -60,7 +60,6 @@ months:
   - name: National Day
     regions: [sg]
     mday: 9
-    observed: to_weekday_if_weekend(date)
   12:
   - name: Christmas Day
     regions: [sg]
@@ -161,7 +160,7 @@ methods:
         when 2024
           [06, 17]
         when 2025
-          [06, 6]
+          [06, 7]
         when 2026
           [05, 27]
         end
