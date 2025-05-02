@@ -28,6 +28,11 @@ months:
     mday: 18
     year_ranges:
       - limited: [2022]
+  - name: Chinese Spring Festival
+    regions: [mu]
+    mday: 29
+    year_ranges:
+      - limited: [2025]
   2:
   - name: Abolition of Slavery
     regions: [mu]
@@ -47,12 +52,37 @@ months:
     mday: 12
     year_ranges:
       - limited: [2021]
+  - name: Thaipoosam Cavadee
+    regions: [mu]
+    mday: 11
+    year_ranges:
+      - limited: [2025]
+  - name: Thaipoosam Cavadee
+    regions: [mu]
+    mday: 01
+    year_ranges:
+      - limited: [2026]
+  - name: Maha Shivaratree
+    regions: [mu]
+    mday: 15
+    year_ranges:
+      - limited: [2026]
   3:
   - name: Maha Shivaratree
     regions: [mu]
     mday: 8
     year_ranges:
       - limited: [2024]
+  - name: Ugaadi
+    regions: [mu]
+    mday: 30
+    year_ranges:
+      - limited: [2025]
+  - name: Ugaadi
+    regions: [mu]
+    mday: 20
+    year_ranges:
+      - limited: [2026]
   - name: Maha Shivaratree
     regions: [mu]
     mday: 1
@@ -66,6 +96,11 @@ months:
   - name: Independence and Republic Day
     regions: [mu]
     mday: 12
+  - name: Eid-Ul-Fitr
+    regions: [mu]
+    mday: 31
+    year_ranges:
+      - limited: [2025]
   4:
   - name: Ugaadi
     regions: [mu]
@@ -92,7 +127,17 @@ months:
     mday: 15
     year_ranges:
       - limited: [2022]
+  - name: Ganesh Chaturthi
+    regions: [mu]
+    mday: 28
+    year_ranges:
+      - limited: [2025]
   9:
+  - name: Ganesh Chaturthi
+    regions: [mu]
+    mday: 15
+    year_ranges:
+      - limited: [2026]
   - name: Ganesh Chaturthi
     regions: [mu]
     mday: 8
@@ -111,6 +156,11 @@ months:
   10:
   - name: Diwali
     regions: [mu]
+    mday: 20
+    year_ranges:
+      - limited: [2025]
+  - name: Diwali
+    regions: [mu]
     mday: 31
     year_ranges:
       - limited: [2024]
@@ -120,11 +170,19 @@ months:
     year_ranges:
       - limited: [2022]
   11:
+  - name: Diwali
+    regions: [mu]
+    mday: 8
+    year_ranges:
+      - limited: [2026]
   - name: All Saints' Day
     regions: [mu]
     mday: 1
     year_ranges:
-      - limited: [2021]
+      - limited: [2025]
+  - name: All Saints' Day
+    regions: [mu]
+    mday: 1
   - name: Arrival of Indentured Labourers
     regions: [mu]
     mday: 2
