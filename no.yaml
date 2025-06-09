@@ -12,7 +12,6 @@ months:
     function: easter(year)
     function_modifier: -49
     type: informal
-    function_modifier: -7
   - name: Skjærtorsdag
     regions: ["no"]
     function: easter(year)
