@@ -13,11 +13,6 @@ months:
     function: easter(year)
     function_modifier: -49
     type: informal
-  - name: Palmesøndag
-    regions: [dk]
-    function: easter(year)
-    function_modifier: -7
-    type: informal
   - name: Skærtorsdag
     regions: [dk]
     function: easter(year)
