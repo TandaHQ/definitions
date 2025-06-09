@@ -96,19 +96,19 @@ months:
     regions: [us]
     mday: 1
     observed: to_weekday_if_weekend(date)
-  - name: Martin Luther King's and Robert E. Lee's Birthdays # renamed Martin Luther King, Jr. Day
+  - name: Martin Luther King's and Robert E. Lee's Birthdays # renamed Martin Luther King Jr. Day
     regions: [us_ms]
     week: 3
     wday: 1
-  - name: Idaho Human Rights Day # renamed Martin Luther King, Jr. Day
+  - name: Idaho Human Rights Day # renamed Martin Luther King Jr. Day
     regions: [us_id]
     week: 3
     wday: 1
-  - name: Civil Rights Day # renamed Martin Luther King, Jr. Day
+  - name: Civil Rights Day # renamed Martin Luther King Jr. Day
     regions: [us_ar]
     week: 3
     wday: 1
-  - name: Martin Luther King, Jr. Day # Third Monday in January
+  - name: Martin Luther King Jr. Day # Third Monday in January
     regions: [us]
     week: 3
     wday: 1
@@ -352,7 +352,7 @@ methods:
       state_holiday = Date.civil(year, month, 26)
       state_holiday.downto(beginning_of_month).find {|date| date if date.wday == 1 }
   lee_jackson_day:
-    # Friday before Martin Luther King, Jr. Day
+    # Friday before Martin Luther King Jr. Day
     arguments: year, month
     source: |
       day_of_holiday = Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, month, 3, 1)
@@ -435,13 +435,13 @@ tests:
       date: ['2017-1-16', '2018-1-15', '2019-1-21']
       regions: ["us"]
     expect:
-      name: "Martin Luther King, Jr. Day"
+      name: "Martin Luther King Jr. Day"
 
   - given:
       date: ['2016-1-18', '2017-1-16', '2018-1-15']
       regions: ["us"]
     expect:
-      name: "Martin Luther King, Jr. Day"
+      name: "Martin Luther King Jr. Day"
   - given:
       date: ['2016-1-18', '2017-1-16', '2018-1-15']
       regions: ["us_ms"]

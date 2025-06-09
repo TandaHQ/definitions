@@ -11,7 +11,7 @@ months:
     regions: [federal_reserve]
     mday: 1
     observed: to_monday_if_sunday(date)
-  - name: Birthday of Martin Luther King, Jr
+  - name: Birthday of Martin Luther King Jr
     week: 3
     wday: 1
     regions: [federal_reserve]
@@ -67,7 +67,7 @@ tests:
       regions: ["federal_reserve"]
       options: ["observed"]
     expect:
-      name: "Birthday of Martin Luther King, Jr"
+      name: "Birthday of Martin Luther King Jr"
   - given:
       date: '2012-02-20'
       regions: ["federal_reserve"]
@@ -127,7 +127,7 @@ tests:
       regions: ["federal_reserve"]
       options: ["observed"]
     expect:
-      name: "Birthday of Martin Luther King, Jr"
+      name: "Birthday of Martin Luther King Jr"
   - given:
       date: '2013-02-18'
       regions: ["federal_reserve"]
@@ -187,7 +187,7 @@ tests:
       regions: ["federal_reserve"]
       options: ["observed"]
     expect:
-      name: "Birthday of Martin Luther King, Jr"
+      name: "Birthday of Martin Luther King Jr"
   - given:
       date: '2014-02-17'
       regions: ["federal_reserve"]
@@ -247,7 +247,7 @@ tests:
       regions: ["federal_reserve"]
       options: ["observed"]
     expect:
-      name: "Birthday of Martin Luther King, Jr"
+      name: "Birthday of Martin Luther King Jr"
   - given:
       date: '2015-02-16'
       regions: ["federal_reserve"]
@@ -307,7 +307,7 @@ tests:
       regions: ["federal_reserve"]
       options: ["observed"]
     expect:
-      name: "Birthday of Martin Luther King, Jr"
+      name: "Birthday of Martin Luther King Jr"
   - given:
       date: '2016-02-15'
       regions: ["federal_reserve"]
