@@ -19,7 +19,7 @@ months:
     regions: [nyse]
     mday: 1
     observed: to_monday_if_sunday(date)
-  - name: Martin Luther King, Jr. Day
+  - name: Martin Luther King Jr. Day
     week: 3
     regions: [nyse]
     wday: 1
@@ -70,7 +70,7 @@ tests:
       date: '2008-01-21'
       regions: ["nyse"]
     expect:
-      name: "Martin Luther King, Jr. Day"
+      name: "Martin Luther King Jr. Day"
   - given:
       date: '2008-02-18'
       regions: ["nyse"]
