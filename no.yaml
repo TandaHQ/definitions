@@ -12,10 +12,6 @@ months:
     function: easter(year)
     function_modifier: -49
     type: informal
-  - name: Palmesøndag
-    regions: ["no"]
-    function: easter(year)
-    function_modifier: -7
   - name: Skjærtorsdag
     regions: ["no"]
     function: easter(year)
@@ -119,12 +115,6 @@ tests:
       options: ["informal"]
     expect:
       name: "Fastelavn"
-  - given:
-      date: '2010-03-28'
-      regions: ["no"]
-      options: ["informal"]
-    expect:
-      name: "Palmesøndag"
   - given:
       date: '2010-04-01'
       regions: ["no"]
