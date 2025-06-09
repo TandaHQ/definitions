@@ -108,7 +108,7 @@ months:
     regions: [us_ar]
     week: 3
     wday: 1
-  - name: Martin Luther King, Jr. Day # Third Monday in January
+  - name: Martin Luther King Jr. Day # Third Monday in January
     regions: [us]
     week: 3
     wday: 1
