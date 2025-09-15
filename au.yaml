@@ -107,9 +107,15 @@ months:
     mday: 25
     observed: to_monday_if_weekend(date)
   - name: Additional public holiday for ANZAC Day # ADDITIONAL ANZAC DAY
-    regions: [au_sa, au_act, au_wa]
+    regions: [au_wa]
     mday: 25
-    function: additional_anzac_on_monday_if_on_weekend(date)
+    function: to_monday_if_weekend(date)
+  - name: Additional public holiday for ANZAC Day # ADDITIONAL ANZAC DAY
+    regions: [au_sa, au_act]
+    mday: 25
+    function: to_monday_if_weekend(date)
+    year_ranges:
+    - before: 2025 # This is inclusive
   5:
   - name: Labour Day
     regions: [au_qld]
@@ -389,19 +395,6 @@ methods:
       else
         nil
       end
-  additional_anzac_on_monday_if_on_weekend:
-    # https://www.fairwork.gov.au/leave/public-holidays
-    # https://www.fairwork.gov.au/leave/public-holidays/list-of-public-holidays/list-of-public-holidays-2021
-    # SA and WA recognise additional anzac holidays on monday if on the weekend
-    arguments: date
-    source: |
-      if [0,6].include?(date.wday)
-        date += 2 if date.wday == 6
-        date += 1 if date.wday == 0
-        date
-      else
-        nil
-      end
   additional_holiday_on_monday_if_on_weekend:
     # NT has additional christmas day on monday before boxing day if on the weekend instead of tuesday
     # Also Additional new year's day is observed on monday if on the weekend
@@ -467,10 +460,25 @@ tests:
     expect:
       name: 'ANZAC Day'
   - given:
-      date: '2021-04-27'
+      date: '2021-04-26'
       regions: ["au_wa"]
     expect:
       name: 'Additional public holiday for ANZAC Day'
+  - given:
+      date: '2026-04-25'
+      regions: ["au_nsw", "au_act", "au_vic", "au_tas", "au_sa", "au_wa", "au_nt", "au_qld"]
+    expect:
+      name: 'ANZAC Day'
+  - given:
+      date: '2026-04-27'
+      regions: ["au_wa"]
+    expect:
+      name: 'Additional public holiday for ANZAC Day'
+  - given:
+      date: '2026-04-27'
+      regions: ["au_nsw", "au_act", "au_vic", "au_tas", "au_sa", "au_nt", "au_qld"]
+    expect:
+      holiday: false
   - given:
       date: '2021-12-25'
       regions: ["au_qld"]
