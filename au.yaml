@@ -106,6 +106,8 @@ months:
     regions: [au_nt, au_qld]
     mday: 25
     observed: to_monday_if_weekend(date)
+    year_ranges:
+    - before: 2025
   - name: Additional public holiday for ANZAC Day # ADDITIONAL ANZAC DAY
     regions: [au_wa]
     mday: 25
@@ -115,7 +117,7 @@ months:
     mday: 25
     function: to_monday_if_weekend(date)
     year_ranges:
-    - before: 2025 # This is inclusive
+    - before: 2025
   5:
   - name: Labour Day
     regions: [au_qld]
@@ -450,27 +452,12 @@ methods:
 
 tests:
   - given:
-      date: '2020-04-25'
-      regions: ["au_act"]
-    expect:
-      name: 'ANZAC Day'
-  - given:
-      date: '2020-04-25'
-      regions: ["au_qld"]
-    expect:
-      name: 'ANZAC Day'
-  - given:
-      date: '2021-04-26'
-      regions: ["au_wa"]
-    expect:
-      name: 'Additional public holiday for ANZAC Day'
-  - given:
-      date: '2026-04-25'
+      date: ['2020-04-25', '2021-04-25', '2022-04-25', '2023-04-25', '2024-04-25', '2025-04-25', '2026-04-25', '2027-04-25']
       regions: ["au_nsw", "au_act", "au_vic", "au_tas", "au_sa", "au_wa", "au_nt", "au_qld"]
     expect:
       name: 'ANZAC Day'
   - given:
-      date: '2026-04-27'
+      date: ['2021-04-26', '2026-04-27']
       regions: ["au_wa"]
     expect:
       name: 'Additional public holiday for ANZAC Day'
