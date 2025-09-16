@@ -260,14 +260,20 @@ months:
   - name: Boxing Day # BOXING DAY STATIC ACTUAL - Recognised by ALL states expect for NT/SA
     regions: [au_act, au_nsw, au_qld, au_vic, au_wa]
     mday: 26
-  - name: Boxing Day # BOXING DAY SA SUBSTITUTE - SA only substitutes Boxing Day if it falls on a Monday
-    regions: [au_sa, au_nt]
+  - name: Boxing Day
+    regions: [au_nt]
     mday: 26
     function: to_tuesday_if_monday(date)
   - name: Additional public holiday Boxing Day # ADDITIONAL BOXING DAY - Recognised by ALL states expect for NT / TAS
-    regions: [au_act, au_nsw, au_qld, au_vic, au_wa, au_sa, au_nt]
+    regions: [au_act, au_nsw, au_qld, au_vic, au_wa, au_nt]
     mday: 26
     function: additional_holiday_if_on_weekend(date)
+  - name: Additional public holiday Boxing Day # ADDITIONAL BOXING DAY - Recognised by ALL states expect for NT / TAS
+    regions: [au_sa]
+    mday: 26
+    function: additional_holiday_if_on_weekend(date)
+    year_ranges:
+      - before: 2025
   - name: Boxing Day # BOXING DAY OBSERVED - Only NT & TAS as they dont have an additional observed if on weekend
     regions: [au_tas] # SA to be moved to additional setup in 2021 (2020 has no additionals)
     mday: 26
@@ -275,6 +281,19 @@ months:
   - name: Proclamation Day
     regions: [au_sa]
     function: to_weekday_if_boxing_weekend_from_year_or_to_tuesday_if_monday(year)
+    year_ranges:
+      - before: 2025
+  - name: Proclamation Day
+    regions: [au_sa]
+    mday: 26
+    year_ranges:
+      - after: 2026
+  - name: Additional public holiday for Proclamation Day
+    regions: [au_sa]
+    mday: 26
+    function: additional_holiday_if_on_weekend(date)
+    year_ranges:
+      - after: 2026
 
 methods:
   afl_grand_final:
