@@ -609,8 +609,11 @@ tests:
     expect:
       name: 'Recreation Day'
   - given:
-      date: '2015-12-26'
+      date: '2015-12-28'
       regions: ["au_tas"]
+      options: ['observed']
+    expect:
+      name: "Boxing Day"
     expect:
       holiday: false
   - given:
