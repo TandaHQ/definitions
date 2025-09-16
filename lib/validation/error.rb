@@ -5,6 +5,7 @@ module Definitions
     class InvalidMonth < Error; end
     class InvalidMethod < Error; end
     class InvalidRegions < Error; end
+    class MissingDateSpecification < Error; end
     class InvalidCustomMethod < Error; end
     class InvalidTest < Error; end
   end
