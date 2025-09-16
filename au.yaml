@@ -641,15 +641,20 @@ tests:
     expect:
       holiday: false
   - given:
-      date: '2015-12-26'
-      regions: ["au_nt"]
-    expect:
-      holiday: false
-  - given:
-      date: '2016-12-27'
+      date: ['2016-12-27', '2017-12-26', '2018-12-26', '2019-12-26', '2024-12-26', '2025-12-26', '2026-12-26', '2026-12-26']
       regions: ["au_sa"]
     expect:
       name: 'Proclamation Day'
+  - given:
+      date: ['2020-12-28', '2021-12-28']
+      regions: ["au_sa"]
+    expect:
+      name: "Additional public holiday Boxing Day"
+  - given:
+      date: ['2026-12-28', '2027-12-28']
+      regions: ["au_sa"]
+    expect:
+      name: 'Additional public holiday for Proclamation Day'
   - given:
       date: '2016-12-25'
       regions: ["au_nt"]
@@ -682,9 +687,40 @@ tests:
       holiday: false
   - given:
       date: '2015-12-26'
+      regions: ["au_qld"]
+    expect:
+      name: "Boxing Day"
+  - given:
+      date: '2015-12-28'
+      regions: ["au_qld"]
+      options: ["observed"]
+    expect:
+      name: "Boxing Day"
+  - given:
+      date: '2020-12-26'
+      regions: ["au_qld"]
+    expect:
+      name: "Additional public holiday for Boxing Day"
+  - given:
+      date: '2015-12-26'
       regions: ["au_sa"]
     expect:
       holiday: false
+  - given:
+      date: '2015-12-28'
+      regions: ["au_sa"]
+    expect:
+      name: "Proclamation Day"
+  - given:
+      date: '2015-12-26'
+      regions: ["au_tas", "au_nt"]
+    expect:
+      holiday: false
+  - given:
+      date: '2015-12-28'
+      regions: ["au_tas", "au_nt"]
+    expect:
+      name: "Boxing Day"
   - given:
       date: '2015-04-27'
       regions: ["au_qld"]
@@ -802,52 +838,6 @@ tests:
       options: ["observed"]
     expect:
       name: 'ANZAC Day'
-  - given:
-      date: '2015-12-26'
-      regions: ["au_qld"]
-    expect:
-      name: "Boxing Day"
-  - given:
-      date: '2015-12-28'
-      regions: ["au_qld"]
-      options: ["observed"]
-    expect:
-      name: "Boxing Day"
-  - given:
-      date: '2020-12-26'
-      regions: ["au_qld"]
-    expect:
-      name: "Additional public holiday for Boxing Day"
-  - given:
-      date: '2015-12-26'
-      regions: ["au_sa"]
-    expect:
-      holiday: false
-  - given:
-      date: '2015-12-28'
-      regions: ["au_sa"]
-    expect:
-      name: "Proclamation Day"
-  - given:
-      date: '2015-12-26'
-      regions: ["au_tas"]
-    expect:
-      holiday: false
-  - given:
-      date: '2015-12-28'
-      regions: ["au_tas"]
-    expect:
-      name: "Boxing Day"
-  - given:
-      date: '2015-12-26'
-      regions: ["au_nt"]
-    expect:
-      holiday: false
-  - given:
-      date: '2015-12-28'
-      regions: ["au_nt"]
-    expect:
-      name: "Boxing Day"
   - given:
       date: '2012-02-13'
       regions: ["au_tas_south"]
