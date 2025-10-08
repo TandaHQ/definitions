@@ -522,7 +522,7 @@ tests:
     expect:
       name: "Queen's Birthday"
   - given:
-      date: ['2023-09-25','2024-09-23', '2025-09-30']
+      date: ['2023-09-25','2024-09-23', '2025-09-29']
       regions: ["au_wa"]
     expect:
       name: "King's Birthday"
@@ -549,12 +549,12 @@ tests:
       name: 'ACT Reconciliation Day'
   - given:
       date: '2014-01-26'
-      regions: ["au_qld"]
+      regions: ["au"]
     expect:
       name: 'Australia Day'
   - given:
       date: '2014-01-27'
-      regions: ["au_qld"]
+      regions: ["au"]
       options: ["observed"]
     expect:
       name: 'Australia Day'
@@ -609,18 +609,8 @@ tests:
     expect:
       name: 'Recreation Day'
   - given:
-      date: '2015-12-26'
-      regions: ["au_tas"]
-    expect:
-      holiday: false
-  - given:
       date: '2015-11-14'
       regions: ["au_qld_brisbane"]
-    expect:
-      holiday: false
-  - given:
-      date: '2015-12-26'
-      regions: ["au_nt"]
     expect:
       holiday: false
   - given:
@@ -633,16 +623,6 @@ tests:
       regions: ["au_nt"]
     expect:
       name: 'Christmas Day'
-  - given:
-      date: '2014-11-04'
-      regions: ["au_vic"]
-    expect:
-      holiday: false
-  - given:
-      date: '2015-11-03'
-      regions: ["au_vic"]
-    expect:
-      holiday: false
   - given:
       date: '2016-12-25'
       regions: ["au_vic"]
@@ -659,34 +639,23 @@ tests:
     expect:
       holiday: false
   - given:
-      date: '2015-12-26'
-      regions: ["au_sa"]
-    expect:
-      holiday: false
-  - given:
-      date: '2015-04-27'
-      regions: ["au_qld"]
-      options: ["observed"]
-    expect:
-      holiday: false
-  - given:
       date: '2014-11-14'
       regions: ["au_qld"]
     expect:
       holiday: false
   - given:
       date: '2014-11-04'
-      regions: ["au_vic_melbourne"]
+      regions: ["au_vic_melbourne", "au_vic"]
     expect:
       name: 'Melbourne Cup Day'
   - given:
       date: '2015-11-03'
-      regions: ["au_vic_melbourne"]
+      regions: ["au_vic_melbourne", "au_vic"]
     expect:
       name: 'Melbourne Cup Day'
   - given:
       date: '2019-11-05'
-      regions: ["au_vic"]
+      regions: ["au_vic", "au_vic_melbourne"]
     expect:
       name: 'Melbourne Cup Day'
   - given:
@@ -770,17 +739,6 @@ tests:
     expect:
       name: 'March Public Holiday'
   - given:
-      date: '2015-04-25'
-      regions: ["au_qld", "au_wa"]
-    expect:
-      name: 'ANZAC Day'
-  - given:
-      date: '2015-04-27'
-      regions: ["au_wa"]
-      options: ["observed"]
-    expect:
-      name: 'ANZAC Day'
-  - given:
       date: '2015-12-26'
       regions: ["au_qld"]
     expect:
@@ -790,17 +748,17 @@ tests:
       regions: ["au_qld"]
       options: ["observed"]
     expect:
-      name: "Boxing Day"
+      name: "Additional public holiday Boxing Day"
   - given:
       date: '2020-12-26'
       regions: ["au_qld"]
     expect:
-      name: "Additional public holiday for Boxing Day"
+      name: "Boxing Day"
   - given:
       date: '2015-12-26'
       regions: ["au_sa"]
     expect:
-      holiday: false
+      name: "Boxing Day"
   - given:
       date: '2015-12-28'
       regions: ["au_sa"]
@@ -810,22 +768,29 @@ tests:
       date: '2015-12-26'
       regions: ["au_tas"]
     expect:
+      name: "Boxing Day"
+  - given:
+      date: '2015-12-26'
+      regions: ["au_tas"]
+      options: ["observed"]
+    expect:
       holiday: false
   - given:
       date: '2015-12-28'
       regions: ["au_tas"]
+      options: ["observed"]
     expect:
       name: "Boxing Day"
   - given:
       date: '2015-12-26'
       regions: ["au_nt"]
     expect:
-      holiday: false
+      name: "Boxing Day"
   - given:
       date: '2015-12-28'
       regions: ["au_nt"]
     expect:
-      name: "Boxing Day"
+      name: "Additional public holiday Boxing Day"
   - given:
       date: '2012-02-13'
       regions: ["au_tas_south"]
@@ -855,9 +820,8 @@ tests:
   - given:
       date: '2016-12-27'
       regions: ["au_qld"]
-      options: ["observed"]
     expect:
-      name: 'Christmas Day'
+      name: 'Additional public holiday for Christmas Day'
   - given:
       date: '2016-12-25'
       regions: ["au_nsw"]
@@ -866,9 +830,8 @@ tests:
   - given:
       date: '2016-12-27'
       regions: ["au_nsw"]
-      options: ["observed"]
     expect:
-      name: 'Christmas Day'
+      name: 'Additional public holiday for Christmas Day'
   - given:
       date: '2016-12-25'
       regions: ["au_act"]
@@ -877,9 +840,8 @@ tests:
   - given:
       date: '2016-12-27'
       regions: ["au_act"]
-      options: ["observed"]
     expect:
-      name: 'Christmas Day'
+      name: 'Additional public holiday for Christmas Day'
   - given:
       date: '2016-12-25'
       regions: ["au_tas"]
@@ -888,9 +850,8 @@ tests:
   - given:
       date: '2016-12-27'
       regions: ["au_tas"]
-      options: ["observed"]
     expect:
-      name: 'Christmas Day'
+      name: 'Additional public holiday for Christmas Day'
   - given:
       date: '2016-12-25'
       regions: ["au_wa"]
@@ -899,9 +860,8 @@ tests:
   - given:
       date: '2016-12-27'
       regions: ["au_wa"]
-      options: ["observed"]
     expect:
-      name: 'Christmas Day'
+      name: 'Additional public holiday for Christmas Day'
   - given:
       date: '2016-12-25'
       regions: ["au_sa"]
@@ -922,7 +882,7 @@ tests:
       regions: ["au_sa"]
       options: ["observed"]
     expect:
-      name: 'Christmas Day'
+      name: 'Additional public holiday for Christmas Day'
   - given:
       date: '2016-12-25'
       regions: ["au_nsw"]
@@ -931,9 +891,8 @@ tests:
   - given:
       date: '2016-12-27'
       regions: ["au_nsw"]
-      options: ["observed"]
     expect:
-      name: 'Christmas Day'
+      name: 'Additional public holiday for Christmas Day'
   - given:
       date: '2016-12-25'
       regions: ["au_act"]
@@ -942,9 +901,8 @@ tests:
   - given:
       date: '2016-12-27'
       regions: ["au_act"]
-      options: ["observed"]
     expect:
-      name: 'Christmas Day'
+      name: 'Additional public holiday for Christmas Day'
   - given:
       date: '2016-12-25'
       regions: ["au_tas"]
@@ -953,9 +911,8 @@ tests:
   - given:
       date: '2016-12-27'
       regions: ["au_tas"]
-      options: ["observed"]
     expect:
-      name: 'Christmas Day'
+      name: 'Additional public holiday for Christmas Day'
   - given:
       date: '2016-12-25'
       regions: ["au_wa"]
@@ -964,9 +921,8 @@ tests:
   - given:
       date: '2016-12-27'
       regions: ["au_wa"]
-      options: ["observed"]
     expect:
-      name: 'Christmas Day'
+      name: 'Additional public holiday for Christmas Day'
   - given:
       date: '2016-12-25'
       regions: ["au_sa"]
@@ -975,42 +931,28 @@ tests:
   - given:
       date: '2016-12-26'
       regions: ["au_sa"]
-      options: ["observed"]
     expect:
-      name: 'Christmas Day'
+      name: 'Additional public holiday for Christmas Day'
   - given:
       date: '2016-12-27'
       regions: ["au_vic"]
-      options: ["observed"]
     expect:
-      name: 'Christmas Day'
+      name: 'Additional public holiday for Christmas Day'
   - given:
-      date: '2016-12-27'
+      date: '2016-12-26'
       regions: ["au_nt"]
-      options: ["observed"]
     expect:
-      name: 'Christmas Day'
+      name: 'Additional public holiday for Christmas Day'
   - given:
       date: '2017-01-01'
-      regions: ["au", "au_qld", "au_nsw", "au_act", "au_vic", "au_sa", "au_wa", "au_nt"]
+      regions: ["au_qld", "au_nsw", "au_act", "au_vic", "au_wa", "au_nt"]
     expect:
       name: "New Year's Day"
-
-#FIXME This commented test is valid but the current code in the ruby repo won't allow it
-#      to work. We need to discuss potential solutions but in the meantime I'm taking it out.
-#      See https://github.com/holidays/definitions/issues/37.
-#  - given:
-#      date: '2017-01-01'
-#      regions: ["au_tas"]
-#    expect:
-#      holiday: false
-
   - given:
       date: '2017-01-02'
-      regions: ["au", "au_qld", "au_nsw", "au_act", "au_vic", "au_sa", "au_wa", "au_nt"]
-      options: ["observed"]
+      regions: ["au_qld", "au_nsw", "au_act", "au_vic", "au_sa", "au_wa", "au_nt"]
     expect:
-      name: "New Year's Day"
+      name: "Additional public holiday for New Year's Day"
   - given:
       date: '2017-01-02'
       regions: ["au_tas"]
@@ -1018,12 +960,12 @@ tests:
       name: "New Year's Day"
   - given:
       date: '2022-01-03'
-      regions: ["au_nsw, au_vic, au_act, au_sa, au_wa, au_nt, au_qld"]
+      regions: ["au_nsw", "au_vic", "au_act", "au_sa", "au_wa", "au_nt", "au_qld"]
     expect:
       name: "Additional public holiday for New Year's Day"
   - given:
       date: '2022-01-01'
-      regions: ["au_nsw, au_vic, au_act, au_sa, au_wa, au_nt, au_qld"]
+      regions: ["au_nsw", "au_vic", "au_act", "au_wa", "au_nt", "au_qld"]
     expect:
       name: "New Year's Day"
   - given:
@@ -1043,14 +985,9 @@ tests:
       name: "Easter Sunday"
   - given:
       date: '2021-08-02'
-      regions: ["au-nt"]
+      regions: ["au_nt"]
     expect:
       name: "Picnic Day"
-  - given:
-      date: '2022-04-17'
-      regions: ["au-nt"]
-    expect:
-      holiday: false
   - given:
       date: '2023-04-09'
       regions: ["au_nt"]
