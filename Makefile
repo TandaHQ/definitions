@@ -1,9 +1,9 @@
-default: validate
+default: test
 
 validate:
 	bundle exec ruby lib/validation/run.rb
 
-test:
+test: validate
 	bundle exec rspec
 
 .PHONY: validate,test

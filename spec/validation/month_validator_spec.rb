@@ -68,4 +68,56 @@ describe Definitions::Validation::Month do
       }
     end
   end
+
+  context 'date specification validation' do
+    it 'allows holiday with mday' do
+      months = { 1 => [{"name"=>"Test Holiday", "regions"=>["test"], "mday"=>1}] }
+      expect(subject.call(months)).to be true
+    end
+
+    it 'allows holiday with function' do
+      months = { 1 => [{"name"=>"Test Holiday", "regions"=>["test"], "function"=>"custom_method(year)"}] }
+      expect(subject.call(months)).to be true
+    end
+
+    it 'allows holiday with wday and week' do
+      months = { 1 => [{"name"=>"Test Holiday", "regions"=>["test"], "wday"=>1, "week"=>2}] }
+      expect(subject.call(months)).to be true
+    end
+
+    it 'returns error if holiday has no date specification' do
+      months = { 1 => [{"name"=>"Test Holiday", "regions"=>["test"]}] }
+      expect { subject.call(months) }.to raise_error(Definitions::Errors::MissingDateSpecification) { |e|
+        expect(e.message).to eq("Holiday 'Test Holiday' must have either 'mday', 'function', or both 'wday' and 'week' attributes to specify the date")
+      }
+    end
+
+    it 'returns error if holiday has wday but no week' do
+      months = { 1 => [{"name"=>"Test Holiday", "regions"=>["test"], "wday"=>1}] }
+      expect { subject.call(months) }.to raise_error(Definitions::Errors::MissingDateSpecification) { |e|
+        expect(e.message).to eq("Holiday 'Test Holiday' with 'wday' must also have 'week' attribute (and vice versa)")
+      }
+    end
+
+    it 'returns error if holiday has week but no wday' do
+      months = { 1 => [{"name"=>"Test Holiday", "regions"=>["test"], "week"=>1}] }
+      expect { subject.call(months) }.to raise_error(Definitions::Errors::MissingDateSpecification) { |e|
+        expect(e.message).to eq("Holiday 'Test Holiday' with 'wday' must also have 'week' attribute (and vice versa)")
+      }
+    end
+
+    it 'returns error if holiday has empty function' do
+      months = { 1 => [{"name"=>"Test Holiday", "regions"=>["test"], "function"=>""}] }
+      expect { subject.call(months) }.to raise_error(Definitions::Errors::MissingDateSpecification) { |e|
+        expect(e.message).to eq("Holiday 'Test Holiday' must have either 'mday', 'function', or both 'wday' and 'week' attributes to specify the date")
+      }
+    end
+
+    it 'returns error if holiday has nil function' do
+      months = { 1 => [{"name"=>"Test Holiday", "regions"=>["test"], "function"=>nil}] }
+      expect { subject.call(months) }.to raise_error(Definitions::Errors::MissingDateSpecification) { |e|
+        expect(e.message).to eq("Holiday 'Test Holiday' must have either 'mday', 'function', or both 'wday' and 'week' attributes to specify the date")
+      }
+    end
+  end
 end

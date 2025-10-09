@@ -16,10 +16,40 @@ module Definitions
             month_def['regions'].each do |region|
               raise Errors::InvalidRegions.new("A month must contain at least one region, received: #{months}") if region.nil? || region.empty?
             end
+
+            # Validate that each holiday has at least one date specification
+            validate_date_specification!(month_def)
           end
         end
 
         true
+      end
+
+      private
+
+      def validate_date_specification!(month_def)
+        has_mday = month_def.key?('mday') && !month_def['mday'].nil?
+        has_wday = month_def.key?('wday') && !month_def['wday'].nil?
+        has_week = month_def.key?('week') && !month_def['week'].nil?
+        has_function = month_def.key?('function') && !month_def['function'].nil? && !month_def['function'].empty?
+
+        holiday_name = month_def['name'] || 'Unknown Holiday'
+
+        # If wday is specified, week must also be specified (and vice versa)
+        if (has_wday && !has_week) || (!has_wday && has_week)
+          raise Errors::MissingDateSpecification.new(
+            "Holiday '#{holiday_name}' with 'wday' must also have 'week' attribute (and vice versa)"
+          )
+        end
+
+        # Must have either mday, function, or both wday AND week
+        valid_date_spec = has_mday || has_function || (has_wday && has_week)
+
+        unless valid_date_spec
+          raise Errors::MissingDateSpecification.new(
+            "Holiday '#{holiday_name}' must have either 'mday', 'function', or both 'wday' and 'week' attributes to specify the date"
+          )
+        end
       end
     end
   end
