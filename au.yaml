@@ -113,7 +113,7 @@ months:
   - name: Additional public holiday for ANZAC Day # ADDITIONAL ANZAC DAY
     regions: [au_sa, au_act]
     mday: 25
-    function: to_monday_if_weekend(date)
+    function: additional_anzac_on_monday_if_on_weekend(date)
     year_ranges:
       - before: 2025
   - name: ANZAC Day # ANZAC DAY ACTUAL
@@ -130,7 +130,7 @@ months:
   - name: Additional public holiday for ANZAC Day # ADDITIONAL ANZAC DAY
     regions: [au_wa]
     mday: 25
-    function: additional_holiday_on_monday_if_on_weekend(date)
+    function: additional_anzac_on_monday_if_on_weekend(date)
   5:
   - name: Labour Day
     regions: [au_qld]
@@ -406,6 +406,19 @@ methods:
     source: |
       if [0,6].include?(date.wday)
         date += 2
+        date
+      else
+        nil
+      end
+  additional_anzac_on_monday_if_on_weekend:
+    # https://www.fairwork.gov.au/leave/public-holidays
+    # https://www.fairwork.gov.au/leave/public-holidays/list-of-public-holidays/list-of-public-holidays-2021
+    # SA and WA recognise additional anzac holidays on monday if on the weekend
+    arguments: date
+    source: |
+      if [0,6].include?(date.wday)
+        date += 2 if date.wday == 6
+        date += 1 if date.wday == 0
         date
       else
         nil
