@@ -117,12 +117,12 @@ months:
     year_ranges:
       - before: 2025
   - name: ANZAC Day # ANZAC DAY ACTUAL
-    regions: [au_nsw, au_sa, au_tas, au_vic, au_act, au_wa, au_nt]
+    regions: [au_nsw, au_sa, au_tas, au_vic, au_wa, au_nt]
     mday: 25
     year_ranges:
       - after: 2026
   - name: ANZAC Day # ANZAC DAY ACTUAL
-    regions: [au_qld]
+    regions: [au_qld, au_act]
     mday: 25
     function: to_monday_if_sunday(date)
     year_ranges:
@@ -483,13 +483,13 @@ tests:
       name: 'ANZAC Day'
   - given:
       date: ['2026-04-25', '2027-04-25']
-      regions: ["au_nsw", "au_act", "au_vic", "au_tas", "au_sa", "au_wa", "au_nt"]
+      regions: ["au_nsw", "au_vic", "au_tas", "au_sa", "au_wa", "au_nt"]
     expect:
       name: 'ANZAC Day'
   - given:
-      # QLD moves to Monday if falls on Sunday
+      # moves to Monday if falls on Sunday
       date: ['2026-04-25', '2027-04-26', '2028-04-25', '2029-04-25', '2030-04-25', '2031-04-25', '2032-04-26', '2033-04-25', '2034-04-25', '2035-04-25']
-      regions: ["au_qld"]
+      regions: ["au_qld", "au_act"]
     expect:
       name: 'ANZAC Day'
   - given:
