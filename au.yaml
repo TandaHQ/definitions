@@ -121,8 +121,20 @@ months:
     mday: 25
     year_ranges:
       - after: 2026
-  - name: ANZAC Day # ANZAC DAY ACTUAL
-    regions: [au_qld, au_act]
+  - name: ANZAC Day
+    regions: [au_act]
+    mday: 25
+    observed: to_monday_if_weekend(date)
+    year_ranges:
+      - limited: 2026
+  - name: ANZAC Day
+    regions: [au_act]
+    mday: 25
+    observed: to_monday_if_sunday(date)
+    year_ranges:
+      - after: 2027
+  - name: ANZAC Day
+    regions: [au_qld]
     mday: 25
     function: to_monday_if_sunday(date)
     year_ranges:
@@ -500,9 +512,35 @@ tests:
     expect:
       name: 'ANZAC Day'
   - given:
-      # moves to Monday if falls on Sunday
-      date: ['2026-04-25', '2027-04-26', '2028-04-25', '2029-04-25', '2030-04-25', '2031-04-25', '2032-04-26', '2033-04-25', '2034-04-25', '2035-04-25']
-      regions: ["au_qld", "au_act"]
+      date: ['2026-04-27']
+      regions: ["au_act"]
+      options: ["observed"]
+    expect:
+      name: 'ANZAC Day'
+  - given:
+      # QLD: stays on 25th (only moves if Sunday)
+      date: ['2026-04-25', '2028-04-25', '2029-04-25', '2030-04-25', '2031-04-25', '2033-04-25', '2034-04-25', '2035-04-25']
+      regions: ["au_qld"]
+    expect:
+      name: 'ANZAC Day'
+  - given:
+      # QLD: observed on Monday when falls on Sunday
+      date: ['2027-04-26', '2032-04-26']
+      regions: ["au_qld"]
+      options: ["observed"]
+    expect:
+      name: 'ANZAC Day'
+  - given:
+      # ACT 2027+: stays on 25th (only moves if Sunday)
+      date: ['2028-04-25', '2029-04-25', '2030-04-25', '2031-04-25', '2033-04-25', '2034-04-25', '2035-04-25']
+      regions: ["au_act"]
+    expect:
+      name: 'ANZAC Day'
+  - given:
+      # ACT 2027+: observed on Monday when falls on Sunday
+      date: ['2027-04-26', '2032-04-26']
+      regions: ["au_act"]
+      options: ["observed"]
     expect:
       name: 'ANZAC Day'
   - given:
@@ -524,7 +562,7 @@ tests:
       name: 'Additional public holiday for ANZAC Day'
   - given:
       date: '2026-04-27'
-      regions: ["au_nsw", "au_act", "au_vic", "au_tas", "au_sa", "au_nt", "au_qld"]
+      regions: ["au_nsw", "au_vic", "au_tas", "au_sa", "au_nt", "au_qld"]
     expect:
       holiday: false
   - given:
