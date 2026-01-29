@@ -9,9 +9,6 @@ months:
   - name: Año nuevo
     regions: [mx]
     mday: 1
-  - name: Dia de los Santos Reyes
-    regions: [mx]
-    mday: 6
   2:
   - name: Día de la Constitución
     week: 1
@@ -89,9 +86,6 @@ months:
   - name: Navidad
     regions: [mx]
     mday: 25
-  - name: Los Santos Inocentes
-    regions: [mx]
-    mday: 28
 
 tests:
   - given:
