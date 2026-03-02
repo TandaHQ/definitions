@@ -148,7 +148,7 @@ methods:
         when 2025
           [10, 20]
         when 2026
-          [10, 8]
+          [11, 8]
         end
       Date.civil(year, month_day[0], month_day[1]) if month_day
   hari_raya_haji:
@@ -176,7 +176,7 @@ methods:
         when 2025
           [03, 31]
         when 2026
-          [03, 20]
+          [03, 21]
         end
       Date.civil(year, month_day[0], month_day[1]) if month_day
   vesak_day:
@@ -261,3 +261,27 @@ tests:
       options: ["observed"]
     expect:
       name: "Vesak Day"
+  - given:
+      date: '2026-03-21'
+      regions: ["sg"]
+      options: ["observed"]
+    expect:
+      name: "Hari Raya Puasa"
+  - given:
+      date: '2026-05-27'
+      regions: ["sg"]
+      options: ["observed"]
+    expect:
+      name: "Hari Raya Haji"
+  - given:
+      date: '2026-06-01'
+      regions: ["sg"]
+      options: ["observed"]
+    expect:
+      name: "Vesak Day"
+  - given:
+      date: '2026-11-09'
+      regions: ["sg"]
+      options: ["observed"]
+    expect:
+      name: "Deepavali"
