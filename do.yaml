@@ -1,16 +1,42 @@
 # Dominican Republic bank holidays for the ruby gem
-# Source: https://www.officeholidays.com/countries/dominican-republic/2026
+# Source: https://mt.gob.do/ministerio-de-trabajo-informa-dias-feriados-correspondientes-al-ano-2026/
 ---
 methods:
   epiphany:
     arguments: year
+    # Nearest monday
     source: |
-      date = Date.civil( year, 1, 6 )
-      if date.wday > 1
-        date += ( 8 - date.wday )
-      elsif date.wday == 0
-        date += 1
+      date = Date.civil(year, 1, 6)
+      if [2,3,4].include?(date.wday)
+        date -= (date.wday - 1)
+      elsif date.wday == 5
+        date += 3
       end
+
+      date
+  labor_day:
+    arguments: year
+    # Nearest monday
+    source: |
+      date = Date.civil(year, 5, 1)
+      if [2,3,4].include?(date.wday)
+        date -= (date.wday - 1)
+      elsif date.wday == 5
+        date += 3
+      end
+
+      date
+  constitution_day:
+    arguments: year
+    # Nearest monday
+    source: |
+      date = Date.civil(year, 11, 6)
+      if [2,3,4].include?(date.wday)
+        date -= (date.wday - 1)
+      elsif date.wday == 5
+        date += 3
+      end
+
       date
 months:
   0:
@@ -45,7 +71,7 @@ months:
   5:
   - name: Dia del Trabajo
     regions: [do]
-    mday: 1
+    function: labor_day(year)
   8:
   - name: Día de la Restauración
     regions: [do]
@@ -57,7 +83,7 @@ months:
   11:
   - name: Día de la Constitución
     regions: [do]
-    mday: 9
+    function: constitution_day(year)
   12:
   - name: Navidad
     regions: [do]
@@ -69,7 +95,7 @@ tests:
     expect:
       name: 'Año Nuevo'
   - given:
-      date: '2026-01-12'
+      date: '2026-01-05'
       regions: ['do']
     expect:
       name: 'Epifanía'
@@ -99,7 +125,7 @@ tests:
     expect:
       name: 'Dia de Pascua'
   - given:
-      date: '2026-05-01'
+      date: '2026-05-04'
       regions: ['do']
     expect:
       name: 'Dia del Trabajo'
