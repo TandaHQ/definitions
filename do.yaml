@@ -1,0 +1,156 @@
+# Dominican Republic bank holidays for the ruby gem
+# Source: https://mt.gob.do/ministerio-de-trabajo-informa-dias-feriados-correspondientes-al-ano-2026/
+---
+methods:
+  epiphany:
+    arguments: year
+    # Nearest monday
+    source: |
+      date = Date.civil(year, 1, 6)
+      if [2,3,4].include?(date.wday)
+        date -= (date.wday - 1)
+      elsif date.wday == 5
+        date += 3
+      end
+
+      date
+  labor_day:
+    arguments: year
+    # Nearest monday
+    source: |
+      date = Date.civil(year, 5, 1)
+      if [2,3,4].include?(date.wday)
+        date -= (date.wday - 1)
+      elsif date.wday == 5
+        date += 3
+      end
+
+      date
+  constitution_day:
+    arguments: year
+    # Nearest monday
+    source: |
+      date = Date.civil(year, 11, 6)
+      if [2,3,4].include?(date.wday)
+        date -= (date.wday - 1)
+      elsif date.wday == 5
+        date += 3
+      end
+
+      date
+months:
+  0:
+  - name: Viernes Santo
+    regions: [do]
+    function: easter(year)
+    function_modifier: -2
+  - name: Dia de Pascua
+    regions: [do]
+    function: easter(year)
+  - name: Corpus Christi
+    regions: [do]
+    function: easter(year)
+    function_modifier: 60
+  1:
+  - name: Año Nuevo
+    regions: [do]
+    mday: 1
+  - name: Epifanía
+    regions: [do]
+    function: epiphany(year)
+  - name: Día de la Altagracia
+    regions: [do]
+    mday: 21
+  - name: Juan Pablo Duarte
+    regions: [do]
+    mday: 26
+  2:
+  - name: Día de la Independencia
+    regions: [do]
+    mday: 27
+  5:
+  - name: Dia del Trabajo
+    regions: [do]
+    function: labor_day(year)
+  8:
+  - name: Día de la Restauración
+    regions: [do]
+    mday: 16
+  9:
+  - name: Día de Nuestra Señora de Mercedes
+    regions: [do]
+    mday: 24
+  11:
+  - name: Día de la Constitución
+    regions: [do]
+    function: constitution_day(year)
+  12:
+  - name: Navidad
+    regions: [do]
+    mday: 25
+tests:
+  - given:
+      date: '2026-01-01'
+      regions: ['do']
+    expect:
+      name: 'Año Nuevo'
+  - given:
+      date: '2026-01-05'
+      regions: ['do']
+    expect:
+      name: 'Epifanía'
+  - given:
+      date: '2026-01-21'
+      regions: ['do']
+    expect:
+      name: 'Día de la Altagracia'
+  - given:
+      date: '2026-01-26'
+      regions: ['do']
+    expect:
+      name: 'Juan Pablo Duarte'
+  - given:
+      date: '2026-02-27'
+      regions: ['do']
+    expect:
+      name: 'Día de la Independencia'
+  - given:
+      date: '2026-04-03'
+      regions: ['do']
+    expect:
+      name: 'Viernes Santo'
+  - given:
+      date: '2026-04-05'
+      regions: ['do']
+    expect:
+      name: 'Dia de Pascua'
+  - given:
+      date: '2026-05-04'
+      regions: ['do']
+    expect:
+      name: 'Dia del Trabajo'
+  - given:
+      date: '2026-06-04'
+      regions: ['do']
+    expect:
+      name: 'Corpus Christi'
+  - given:
+      date: '2026-08-16'
+      regions: ['do']
+    expect:
+      name: 'Día de la Restauración'
+  - given:
+      date: '2026-09-24'
+      regions: ['do']
+    expect:
+      name: 'Día de Nuestra Señora de Mercedes'
+  - given:
+      date: '2026-11-09'
+      regions: ['do']
+    expect:
+      name: 'Día de la Constitución'
+  - given:
+      date: '2026-12-25'
+      regions: ['do']
+    expect:
+      name: 'Navidad'

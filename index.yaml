@@ -17,6 +17,7 @@ defs:
   CZ: ['cz.yaml']
   DK: ['dk.yaml']
   DE: ['de.yaml']
+  DO: ['do.yaml']
   ECB_TARGET: ['ecb_target.yaml']
   EE: ['ee.yaml']
   EL: ['el.yaml']
