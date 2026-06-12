@@ -44,9 +44,6 @@ months:
     regions: [do]
     function: easter(year)
     function_modifier: -2
-  - name: Dia de Pascua
-    regions: [do]
-    function: easter(year)
   - name: Corpus Christi
     regions: [do]
     function: easter(year)
@@ -121,11 +118,6 @@ tests:
       name: 'Viernes Santo'
   - given:
       date: '2026-04-05'
-      regions: ['do']
-    expect:
-      name: 'Dia de Pascua'
-  - given:
-      date: '2026-05-04'
       regions: ['do']
     expect:
       name: 'Dia del Trabajo'
