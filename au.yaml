@@ -274,13 +274,20 @@ months:
     week: 1
     wday: 2
   12:
-  - name: Christmas Day # SA CHRISTMAS DAY STATIC EXCEPT SATURDAY - Excluding Saturday for SA, is moved to monday
+  - name: Christmas Day # CHRISTMAS DAY STATIC ACTUAL - Recognised by ALL states except for SA
+    regions: [au_act, au_nsw, au_qld, au_tas, au_vic, au_wa, au_nt]
+    mday: 25
+  - name: Christmas Day # SA CHRISTMAS DAY PRE PUBLIC HOLIDAYS ACT 2023 - Saturday 25 December was not a holiday, it was substituted to the Monday
     regions: [au_sa]
     mday: 25
     function: sa_christmas_exclude_saturday(date)
-  - name: Christmas Day # CHRISTMAS DAY STATIC ACTUAL - Recognised by ALL states expect for SA
-    regions: [au_act, au_nsw, au_qld, au_tas, au_vic, au_wa, au_nt]
+    year_ranges:
+      - before: 2023
+  - name: Christmas Day # SA CHRISTMAS DAY FROM 2024 - Public Holidays Act 2023 makes 25 December a holiday even on a Saturday
+    regions: [au_sa]
     mday: 25
+    year_ranges:
+      - after: 2024
   - name: Additional public holiday for Christmas Day # ADDITIONAL CHRISTMAS DAY - additional christmas day moves two days forward on the weekend, Recognised by ALL states expect for NT and SA
     regions: [au_act, au_nsw, au_qld, au_tas, au_vic, au_wa]
     mday: 25
@@ -289,10 +296,18 @@ months:
     regions: [au_nt]
     mday: 25
     function: additional_holiday_on_monday_if_on_weekend(date)
-  - name: Additional public holiday for Christmas Day # ADDITIONAL CHRISTMAS DAY TO MONDAY FOR SA EXCEPT ON SATURDAY - additional christmas day for SA excludes saturday
+  - name: Additional public holiday for Christmas Day # ADDITIONAL CHRISTMAS DAY TO MONDAY FOR SA PRE PUBLIC HOLIDAYS ACT 2023 - no additional day when christmas fell on a saturday
     regions: [au_sa]
     mday: 25
     function: additional_holiday_on_monday_if_on_sunday(date)
+    year_ranges:
+      - before: 2023
+  - name: Additional public holiday for Christmas Day # ADDITIONAL CHRISTMAS DAY TO MONDAY FOR SA FROM 2024 - additional christmas day on the weekend is always on the following monday
+    regions: [au_sa]
+    mday: 25
+    function: additional_holiday_on_monday_if_on_weekend(date)
+    year_ranges:
+      - after: 2024
   - name: Boxing Day # BOXING DAY STATIC ACTUAL - Recognised by ALL states expect for NT/SA
     regions: [au_act, au_nsw, au_qld, au_vic, au_wa]
     mday: 26
@@ -461,7 +476,7 @@ methods:
         nil
       end
   additional_holiday_on_monday_if_on_sunday:
-    # SA doesn't get an additional christmas day if it falls on a saturday
+    # SA didn't get an additional christmas day if it fell on a saturday, prior to the Public Holidays Act 2023
     arguments: date
     source: |
       if date.wday == 0
@@ -471,6 +486,7 @@ methods:
         nil
       end
   sa_christmas_exclude_saturday:
+    # Prior to the Public Holidays Act 2023, SA substituted a saturday christmas day to the following monday
     arguments: date
     source: |
       if date.wday == 6
@@ -997,10 +1013,35 @@ tests:
     expect:
       name: 'Christmas Day'
   - given:
+      # Sat 25 Dec, pre Public Holidays Act 2023: SA substituted Christmas Day to the Monday
       date: '2021-12-25'
       regions: ["au_sa"]
     expect:
       holiday: false
+  - given:
+      # Sat 25 Dec, pre Public Holidays Act 2023: Christmas Day itself is observed on Mon 27 Dec
+      date: '2021-12-27'
+      regions: ["au_sa"]
+    expect:
+      name: 'Christmas Day'
+  - given:
+      # Sun 25 Dec, pre Public Holidays Act 2023: the additional holiday lands on Mon 26 Dec
+      date: '2022-12-26'
+      regions: ["au_sa"]
+    expect:
+      name: 'Additional public holiday for Christmas Day'
+  - given:
+      # Sat 25 Dec, from Public Holidays Act 2023: SA observes Christmas Day on the day itself
+      date: '2027-12-25'
+      regions: ["au_sa"]
+    expect:
+      name: 'Christmas Day'
+  - given:
+      # Sat 25 Dec, from Public Holidays Act 2023: the additional holiday lands on Mon 27 Dec
+      date: '2027-12-27'
+      regions: ["au_sa"]
+    expect:
+      name: 'Additional public holiday for Christmas Day'
   - given:
       date: '2022-12-25'
       regions: ["au_sa"]
