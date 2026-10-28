@@ -1,10 +1,13 @@
 # Canadian holiday definitions for the Ruby Holiday gem.
-# Updated 2018-03-02.
+# Updated 2026-08-19.
 #
 # Notes:
 #  - 'Family Day' in various provinces are only celebrated after certain years: http://www.timeanddate.com/holidays/canada/family-day
 #  - 'Family Day' for New Brunswick after 2018  http://www.gnb.ca/legis/bill/FILE/58/3/Bill-67-e.htm
 #  - 'National Aboriginal Day for Yukon' Bill 2 received Royal Assent on May 8, 2017. http://www.gov.yk.ca/news/17-075.html
+#  - 'National Day for Truth and Reconciliation' is statutory in BC (Employment Standards Act, 2023) and PEI (2021).
+#    In Alberta and Manitoba it is informal here: Alberta leaves it to employer discretion, and while Manitoba made it a
+#    general holiday on 2023-12-07, we only apply it going forward. Applied after 2026 so historical dates are unchanged.
 ---
 months:
   0:
@@ -160,6 +163,19 @@ months:
     week: 1
     regions: [ca]
     wday: 1
+  - name: National Day for Truth and Reconciliation
+    regions: [ca_bc, ca_pe]
+    mday: 30
+    observed: to_monday_if_weekend(date)
+    year_ranges:
+    - after: 2026
+  - name: National Day for Truth and Reconciliation
+    regions: [ca_ab, ca_mb]
+    mday: 30
+    observed: to_monday_if_weekend(date)
+    type: informal
+    year_ranges:
+    - after: 2026
   10:
   - name: Thanksgiving
     week: 2
@@ -730,3 +746,59 @@ tests:
       regions: ['ca_yt']
     expect:
       name: 'National Aboriginal Day'
+
+  # National Day for Truth and Reconciliation - statutory in BC and PEI, applied after 2026
+  - given:
+      date: '2026-09-30'
+      regions: ['ca_bc', 'ca_pe']
+    expect:
+      name: 'National Day for Truth and Reconciliation'
+  - given:
+      date: '2027-09-30'
+      regions: ['ca_bc', 'ca_pe']
+    expect:
+      name: 'National Day for Truth and Reconciliation'
+  # National Day for Truth and Reconciliation - informal in Alberta and Manitoba
+  - given:
+      date: '2026-09-30'
+      regions: ['ca_ab', 'ca_mb']
+      options: ['informal']
+    expect:
+      name: 'National Day for Truth and Reconciliation'
+  - given:
+      date: '2026-09-30'
+      regions: ['ca_ab', 'ca_mb']
+    expect:
+      holiday: false
+  # National Day for Truth and Reconciliation - should not be active before 2026
+  - given:
+      date: '2025-09-30'
+      regions: ['ca_bc', 'ca_pe']
+    expect:
+      holiday: false
+  - given:
+      date: '2023-10-02'
+      regions: ['ca_bc', 'ca_pe']
+      options: ['observed']
+    expect:
+      holiday: false
+  # National Day for Truth and Reconciliation - not observed in provinces without the holiday
+  - given:
+      date: '2026-09-30'
+      regions: ['ca_on', 'ca_qc', 'ca_ns', 'ca_nb', 'ca_nl', 'ca_sk']
+      options: ['informal']
+    expect:
+      holiday: false
+  # National Day for Truth and Reconciliation - moves to Monday when it falls on a weekend
+  - given:
+      date: '2028-10-02'
+      regions: ['ca_bc', 'ca_pe']
+      options: ['observed']
+    expect:
+      name: 'National Day for Truth and Reconciliation'
+  - given:
+      date: '2029-10-01'
+      regions: ['ca_bc', 'ca_pe']
+      options: ['observed']
+    expect:
+      name: 'National Day for Truth and Reconciliation'
