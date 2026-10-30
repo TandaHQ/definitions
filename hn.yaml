@@ -4,30 +4,42 @@
 # Feriado Morazánico: Decreto Legislativo 78-2015 moves 3, 12 and 21 October to
 # the first Wednesday, Thursday and Friday of October.
 ---
+# Each day has its own method because the generator merges same-name holidays
+# sharing a function, ignoring function_modifier.
 methods:
-  hn_feriado_morazanico:
+  hn_feriado_morazanico_wednesday:
     arguments: year
     # First Wednesday of October
     source: |
       date = Date.civil(year, 10, 1)
       date + ((3 - date.wday) % 7)
+  hn_feriado_morazanico_thursday:
+    arguments: year
+    # Day after the first Wednesday of October
+    source: |
+      date = Date.civil(year, 10, 1)
+      date + ((3 - date.wday) % 7) + 1
+  hn_feriado_morazanico_friday:
+    arguments: year
+    # Two days after the first Wednesday of October
+    source: |
+      date = Date.civil(year, 10, 1)
+      date + ((3 - date.wday) % 7) + 2
 months:
   0:
   - name: Feriado Morazánico
     regions: [hn]
-    function: hn_feriado_morazanico(year)
+    function: hn_feriado_morazanico_wednesday(year)
     year_ranges:
       - after: 2015
   - name: Feriado Morazánico
     regions: [hn]
-    function: hn_feriado_morazanico(year)
-    function_modifier: 1
+    function: hn_feriado_morazanico_thursday(year)
     year_ranges:
       - after: 2015
   - name: Feriado Morazánico
     regions: [hn]
-    function: hn_feriado_morazanico(year)
-    function_modifier: 2
+    function: hn_feriado_morazanico_friday(year)
     year_ranges:
       - after: 2015
   - name: Jueves Santo
