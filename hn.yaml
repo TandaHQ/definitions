@@ -1,0 +1,214 @@
+# Honduras public holidays for the ruby gem
+# Source: Código del Trabajo, Artículo 339 (paid even when falling on a Sunday)
+# https://www.trabajo.gob.hn/wp-content/uploads/2022/09/Codigo-del-Trabajo-y-sus-Reformas.pdf
+# Feriado Morazánico: Decreto Legislativo 78-2015 moves 3, 12 and 21 October to
+# the first Wednesday, Thursday and Friday of October.
+---
+# Each day has its own method because the generator merges same-name holidays
+# sharing a function, ignoring function_modifier.
+methods:
+  hn_feriado_morazanico_wednesday:
+    arguments: year
+    # First Wednesday of October
+    source: |
+      date = Date.civil(year, 10, 1)
+      date + ((3 - date.wday) % 7)
+  hn_feriado_morazanico_thursday:
+    arguments: year
+    # Day after the first Wednesday of October
+    source: |
+      date = Date.civil(year, 10, 1)
+      date + ((3 - date.wday) % 7) + 1
+  hn_feriado_morazanico_friday:
+    arguments: year
+    # Two days after the first Wednesday of October
+    source: |
+      date = Date.civil(year, 10, 1)
+      date + ((3 - date.wday) % 7) + 2
+months:
+  0:
+  - name: Feriado Morazánico
+    regions: [hn]
+    function: hn_feriado_morazanico_wednesday(year)
+    year_ranges:
+      - after: 2015
+  - name: Feriado Morazánico
+    regions: [hn]
+    function: hn_feriado_morazanico_thursday(year)
+    year_ranges:
+      - after: 2015
+  - name: Feriado Morazánico
+    regions: [hn]
+    function: hn_feriado_morazanico_friday(year)
+    year_ranges:
+      - after: 2015
+  - name: Jueves Santo
+    regions: [hn]
+    function: easter(year)
+    function_modifier: -3
+  - name: Viernes Santo
+    regions: [hn]
+    function: easter(year)
+    function_modifier: -2
+  - name: Sábado Santo
+    regions: [hn]
+    function: easter(year)
+    function_modifier: -1
+  1:
+  - name: Año Nuevo
+    regions: [hn]
+    mday: 1
+  4:
+  - name: Día de las Américas
+    regions: [hn]
+    mday: 14
+  5:
+  - name: Día del Trabajo
+    regions: [hn]
+    mday: 1
+  9:
+  - name: Día de la Independencia
+    regions: [hn]
+    mday: 15
+  10:
+  - name: Día de Francisco Morazán
+    regions: [hn]
+    mday: 3
+    year_ranges:
+      - before: 2014
+  - name: Día de la Raza
+    regions: [hn]
+    mday: 12
+    year_ranges:
+      - before: 2014
+  - name: Día de las Fuerzas Armadas
+    regions: [hn]
+    mday: 21
+    year_ranges:
+      - before: 2014
+  12:
+  - name: Navidad
+    regions: [hn]
+    mday: 25
+tests:
+  - given:
+      date: '2026-01-01'
+      regions: ['hn']
+    expect:
+      name: 'Año Nuevo'
+  - given:
+      date: '2026-04-02'
+      regions: ['hn']
+    expect:
+      name: 'Jueves Santo'
+  - given:
+      date: '2026-04-03'
+      regions: ['hn']
+    expect:
+      name: 'Viernes Santo'
+  - given:
+      date: '2026-04-04'
+      regions: ['hn']
+    expect:
+      name: 'Sábado Santo'
+  - given:
+      date: '2026-04-14'
+      regions: ['hn']
+    expect:
+      name: 'Día de las Américas'
+  - given:
+      date: '2026-05-01'
+      regions: ['hn']
+    expect:
+      name: 'Día del Trabajo'
+  - given:
+      date: '2026-09-15'
+      regions: ['hn']
+    expect:
+      name: 'Día de la Independencia'
+  - given:
+      date: '2026-10-07'
+      regions: ['hn']
+    expect:
+      name: 'Feriado Morazánico'
+  - given:
+      date: '2026-10-08'
+      regions: ['hn']
+    expect:
+      name: 'Feriado Morazánico'
+  - given:
+      date: '2026-10-09'
+      regions: ['hn']
+    expect:
+      name: 'Feriado Morazánico'
+  - given:
+      date: '2025-10-01'
+      regions: ['hn']
+    expect:
+      name: 'Feriado Morazánico'
+  - given:
+      date: '2025-10-02'
+      regions: ['hn']
+    expect:
+      name: 'Feriado Morazánico'
+  - given:
+      date: '2025-10-03'
+      regions: ['hn']
+    expect:
+      name: 'Feriado Morazánico'
+  - given:
+      date: '2024-10-02'
+      regions: ['hn']
+    expect:
+      name: 'Feriado Morazánico'
+  - given:
+      date: '2024-10-03'
+      regions: ['hn']
+    expect:
+      name: 'Feriado Morazánico'
+  - given:
+      date: '2024-10-04'
+      regions: ['hn']
+    expect:
+      name: 'Feriado Morazánico'
+  - given:
+      date: '2026-10-03'
+      regions: ['hn']
+    expect:
+      holiday: false
+  - given:
+      date: '2026-10-12'
+      regions: ['hn']
+    expect:
+      holiday: false
+  - given:
+      date: '2026-10-21'
+      regions: ['hn']
+    expect:
+      holiday: false
+  - given:
+      date: '2026-10-06'
+      regions: ['hn']
+    expect:
+      holiday: false
+  - given:
+      date: '2026-10-10'
+      regions: ['hn']
+    expect:
+      holiday: false
+  - given:
+      date: '2013-10-03'
+      regions: ['hn']
+    expect:
+      name: 'Día de Francisco Morazán'
+  - given:
+      date: '2026-12-25'
+      regions: ['hn']
+    expect:
+      name: 'Navidad'
+  # Holy Week moves with Easter (2027-03-28)
+  - given:
+      date: '2027-03-27'
+      regions: ['hn']
+    expect:
+      name: 'Sábado Santo'
