@@ -30,6 +30,7 @@ defs:
   GE: ['ge.yaml']
   HR: ['hr.yaml']
   HK: ['hk.yaml']
+  HN: ['hn.yaml']
   HU: ['hu.yaml']
   IE: ['ie.yaml']
   IS: ['is.yaml']
