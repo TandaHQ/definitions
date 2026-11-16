@@ -62,7 +62,7 @@ months:
   - name: Day of Goodwill
     regions: [za]
     mday: 26
-    observed: to_weekday_if_boxing_weekend(date)
+    observed: to_monday_if_sunday(date)
 
 tests:
   - given:
@@ -137,3 +137,39 @@ tests:
       options: ["informal"]
     expect:
       name: "Day of Goodwill"
+  - given:
+      date: '2026-12-26'
+      regions: ["za"]
+      options: ["observed"]
+    expect:
+      name: "Day of Goodwill"
+  - given:
+      date: '2026-12-28'
+      regions: ["za"]
+      options: ["observed"]
+    expect:
+      holiday: false
+  - given:
+      date: '2027-12-27'
+      regions: ["za"]
+      options: ["observed"]
+    expect:
+      name: "Day of Goodwill"
+  - given:
+      date: '2027-12-28'
+      regions: ["za"]
+      options: ["observed"]
+    expect:
+      holiday: false
+  - given:
+      date: '2022-12-26'
+      regions: ["za"]
+      options: ["observed"]
+    expect:
+      name: "Day of Goodwill"
+  - given:
+      date: '2022-12-27'
+      regions: ["za"]
+      options: ["observed"]
+    expect:
+      holiday: false
